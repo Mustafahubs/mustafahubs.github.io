@@ -1,331 +1,429 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en" data-theme="bone-acid">
 <head>
-  <title>Mustafa | Portfolio</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="icon" type="image/x-icon" href="images/resume.ico" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function () {
-      emailjs.init("t-x-EUdeBdLojL25V");
-    })();
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghulam Mustafa — Python Automation, APIs &amp; Backend Engineer</title>
+  <meta name="description" content="Ghulam Mustafa — Python automation, API reverse-engineering, and backend engineer (Founder of Mustafa Code Sol Ltd). Turning manual chaos into clean automated pipelines." />
+  <meta name="theme-color" content="#0D0D0B" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ghulam Mustafa — Python Automation, APIs &amp; Backend Engineer" />
+  <meta property="og:description" content="Ghulam Mustafa — Python automation, API reverse-engineering, and backend engineer (Founder of Mustafa Code Sol Ltd). Turning manual chaos into clean automated pipelines." />
+  <meta property="og:url" content="https://mustafahubs.github.io/" />
+  <meta property="og:image" content="https://mustafahubs.github.io/img/projects/estate-scout-pro.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://mustafahubs.github.io/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230D0D0B%27/%3E%3Cpath d=%27M16 44V20h14M16 32h12M36 20v24h12M36 32h10%27 stroke=%27%23C8FF2E%27 stroke-width=%278%27 fill=%27none%27/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+<body>
+  <!-- Film grain overlay -->
+  <div class="film-grain" aria-hidden="true"></div>
 
-<body class="is-preload">
-  <!-- Nav -->
-  <nav id="nav">
-    <ul class="container">
-      <li><a href="#top">Home</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="https://flowcv.com/resume/1opd7au38e">Resume</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Top scroll progress hairline -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar" id="scrollProgressBar"></div>
+  </div>
 
-  <!-- Home -->
-  <article id="top" class="wrapper style1">
-    <div class="container">
-      <div class="row">
-        <div class="col-4 col-5-large col-12-medium">
-          <span class="image fit"><img src="images/profile-P.jpg" alt="" /></span>
+  <!-- Custom cursor (desktop pointer devices only) -->
+  <div class="cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__label" id="cursorLabel"></span>
+    </div>
+  </div>
+
+  <!-- 1. PRELOADER -->
+  <div class="preloader" id="preloader" role="status" aria-live="polite">
+    <div class="preloader__inner">
+      <div class="preloader__top">
+        <span class="mono preloader__tag">MUSTAFA CODE SOL LTD // BOOT SEQUENCE</span>
+        <span class="mono preloader__status">SYS.OK</span>
+      </div>
+      <div class="preloader__terminal" id="preloaderLines">
+        <div class="preloader__line">&gt; connecting to worker nodes...</div>
+        <div class="preloader__line">&gt; parsing 15 production systems...</div>
+        <div class="preloader__line">&gt; compiling pipeline portfolio...</div>
+      </div>
+      <div class="preloader__bottom">
+        <div class="preloader__bar">
+          <div class="preloader__bar-fill" id="preloaderBarFill"></div>
         </div>
-        <div class="col-8 col-7-large col-12-medium">
-          <header>
-            <h1>Hi. I'm <strong>Mustafa</strong>.</h1>
-          </header>
-          <p>
-            I fell in love with programming and I have at least learnt
-            something, I think… 🤷‍♂️<br />
-            I am fluent in classics like <b>Python, Javascript and Dart.</b>
-            <br />
-            My field of Interest's are building new
-            <b>Web Automation Tools</b> and Products and also in areas related
-            to <b>DS, AI and ML.</b>
+        <div class="preloader__counter" id="preloaderCounter">000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav__inner">
+      <a href="#hero" class="site-nav__brand" data-scramble>
+        <span class="site-nav__dot"></span>
+        <span>GM // MCS</span>
+      </a>
+      <nav class="site-nav__links" aria-label="Primary">
+        <a href="#pipeline" class="site-nav__link" data-scramble>Pipeline</a>
+        <a href="#projects" class="site-nav__link" data-scramble>Work (15)</a>
+        <a href="#skills" class="site-nav__link" data-scramble>Stack</a>
+        <a href="#experience" class="site-nav__link" data-scramble>Track</a>
+        <a href="#services" class="site-nav__link" data-scramble>Services</a>
+        <a href="#contact" class="site-nav__link site-nav__link--cta" data-scramble>Automate</a>
+      </nav>
+      <button class="site-nav__menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="site-nav__drawer" id="mobileDrawer">
+      <a href="#pipeline" class="site-nav__drawer-link">01. Chaos &rarr; Pipeline</a>
+      <a href="#projects" class="site-nav__drawer-link">02. Selected Work (15)</a>
+      <a href="#skills" class="site-nav__drawer-link">03. Technical Stack</a>
+      <a href="#experience" class="site-nav__drawer-link">04. Experience</a>
+      <a href="#services" class="site-nav__drawer-link">05. Services</a>
+      <a href="#contact" class="site-nav__drawer-link">06. Start a Pipeline</a>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- 2. HERO -->
+    <section class="hero" id="hero" data-bg-tone="bg">
+      <canvas class="hero__canvas" id="heroDotCanvas" aria-hidden="true"></canvas>
+
+      <div class="container hero__container">
+        <div class="hero__meta-top">
+          <span class="pill-badge">
+            <span class="pill-badge__pulse"></span>
+            MUSTAFA CODE SOL LTD &bull; UK REGISTERED
+          </span>
+          <span class="mono hero__coords">30.0025&deg; N, 73.2412&deg; E &mdash; BAHAWALNAGAR, PK</span>
+        </div>
+
+        <h1 class="hero__title" aria-label="I automate the boring parts.">
+          <span class="line-mask"><span class="line-inner">I automate</span></span>
+          <span class="line-mask"><span class="line-inner">the <em class="serif-accent">boring parts.</em></span></span>
+        </h1>
+
+        <div class="hero__sub">
+          <div class="hero__role-box">
+            <span class="mono hero__prompt">$ role --current</span>
+            <span class="mono hero__role-text" id="heroRoleText">Python Automation Engineer</span><span class="mono hero__caret" aria-hidden="true">_</span>
+          </div>
+          <p class="hero__tagline" id="heroTagline">
+            I build the automation, APIs and bots that replace manual work.
           </p>
+        </div>
 
-          <p>
-            Whenever possible, I also apply my passion for developing products
-            with <b>Node.js</b> and
-            <b>Modern Javascript Library and Frameworks</b> like
-            <b>Angular and Python F-Work Django.</b>
-          </p>
-          <a href="#work" class="button large scrolly">What I do</a>
-          <a href="/assets/pdf/Mustafa-Portfolio.pdf" class="button large scrolly">Download Resume</a>
+        <div class="hero__actions">
+          <a href="#projects" class="btn btn--primary magnetic" data-cursor="EXPLORE">
+            <span>Explore 15 Systems</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#pipeline" class="btn btn--ghost magnetic">
+            <span>Watch Chaos &rarr; Pipeline</span>
+          </a>
         </div>
       </div>
-    </div>
-  </article>
 
-  <!-- Work -->
-  <article id="work" class="wrapper style2">
-    <div class="container">
-      <header>
-        <h2>Services</h2>
-        <p>Here's all the stuff I do.</p>
-      </header>
-      <div class="row aln-center">
-        <div class="col-4 col-6-medium col-12-small">
-          <section class="box style1">
-            <span class="icon featured fa-chart-bar"></span>
-            <h3>Data Scraping</h3>
-            <p>
-              I have over 3 years of experience as a Data Scientist and Python
-              Web Scraper. I'm an expert in Python Web Scraping, Data
-              Scraping, Extraction, and Data Mining. I'll double-check the
-              output files before delivery for your convenience and organize
-              the data according to your expectations.
-            </p>
-          </section>
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          <section class="box style1">
-            <span class="icon solid featured fa-robot"></span>
-            <h3>Web Automation</h3>
-            <p>
-              Repeated web tasks like filling forms, data submission, auto
-              purchasing bots, social media bots, extracting data, images,
-              checking reports and file downloading etc. Bots or scripts
-              saves valuable time and makes regular boring web tasks faster,
-              easiest, automatic, and enjoyable.
-            </p>
-          </section>
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          <section class="box style1">
-            <span class="icon solid featured fa-laptop-code"></span>
-            <h3>Web Development</h3>
-            <p>
-              Web design encompasses many different skills and disciplines in
-              the production and maintenance of websites. The different areas
-              of web design including web graphic design user interface design
-              authoring, including standardized code and user experience
-              design and search engine.
-            </p>
-          </section>
-        </div>
-      </div>
-      <footer>
-        <p>
-          I can also build custom scripts to automate the OS (windows, Linux
-          and Mac) Apps.
-        </p>
-        <a href="#portfolio" class="button large scrolly">See some of my recent work</a>
-      </footer>
-    </div>
-  </article>
+      <a href="#pipeline" class="hero__scroll-cue" aria-label="Scroll down to Chaos to Pipeline">
+        <span class="mono">SCROLL</span>
+        <span class="hero__scroll-arrow" aria-hidden="true">&darr;</span>
+      </a>
+    </section>
 
-  <!-- Portfolio -->
-  <article id="portfolio" class="wrapper style3">
-    <div class="container">
-      <header>
-        <h2>My Recent Works</h2>
-        <p>Here are a few projects I've worked on recently.</p>
-      </header>
-      <div class="row">
-        <div class="col-4 col-6-medium col-12-small">
-          <article class="box style2">
-            <a href="https://youtu.be/FuvdO7mSAkE" class="image featured"><img src="images/Scrap Proprties.png"
-                alt="" /></a>
-            <h3>
-              <a href="https://youtu.be/FuvdO7mSAkE">Real Estate Tool</a>
-            </h3>
-            <p>
-              Python Scraper for Sale Listings on ForSaleByOwner.com A Useful
-              Real Estate Property Scraping Tool and Easy Setup. The scraper
-              automates the process of gathering info from the site.
-            </p>
-            <a class="demo-work" role="button" href="https://youtu.be/FuvdO7mSAkE">View Demo</a>
-            <a class="demo-work" role="submit"
-              href="https://github.com/Mustafahubs/ForSaleByOwner-ScraperTool">Github</a>
-          </article>
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          <article class="box style2">
-            <a href="https://www.linkedin.com/posts/ghulam-mustafa-dev_pythonautomation-pythonscripting-webautomation-activity-7034843303237795840-CS4E?utm_source=share&utm_medium=member_desktop"
-              class="image featured"><img src="images/Xo.gr-Project.png" alt="" /></a>
-            <h3>
-              <a
-                href="https://www.linkedin.com/posts/ghulam-mustafa-dev_pythonautomation-pythonscripting-webautomation-activity-7034843303237795840-CS4E?utm_source=share&utm_medium=member_desktop">Greek
-                Yellow Pages</a>
-            </h3>
-            <p>
-              A Yellow Pages data scraping tool. This website is protected
-              with captcha security but I bypass the captcha. But I solve it
-              after spending hours. This tool is helpful for lead generation.
-            </p>
-            <a class="demo-work" role="button"
-              href="https://www.linkedin.com/posts/ghulam-mustafa-dev_pythonautomation-pythonscripting-webautomation-activity-7034843303237795840-CS4E?utm_source=share&utm_medium=member_desktop">View
-              Demo</a>
-          </article>
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          <article class="box style2">
-            <a href="https://www.linkedin.com/posts/ghulam-mustafa-dev_pythonautomation-pythonscripting-webautomation-activity-7034843303237795840-CS4E?utm_source=share&utm_medium=member_desktop"
-              class="image featured"><img src="images/zillow-project.png" alt="" /></a>
-            <h3>
-              <a
-                href="https://www.linkedin.com/posts/ghulam-mustafa-dev_pythonautomation-pythonscripting-webautomation-activity-7034843303237795840-CS4E?utm_source=share&utm_medium=member_desktop">Zillow
-                Property Scraper</a>
-            </h3>
-            <p>
-              In this project, I have to grab all the Zillow property items
-              data into a single sheet for my client. So that he can easily
-              analysis of the data to compete with the competitors and many other
-              insights.
-            </p>
-            <a class="demo-work" role="button"
-              href="https://www.linkedin.com/posts/ghulam-mustafa-dev_pythonautomation-pythonscripting-webautomation-activity-7034843303237795840-CS4E?utm_source=share&utm_medium=member_desktop">View
-              Demo</a>
-          </article>
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          <article class="box style2">
-            <a href="https://youtu.be/9i_yBNgynT8" class="image featured"><img src="images/daraz.png" alt="" /></a>
-            <h3>
-              <a href="https://youtu.be/9i_yBNgynT8">Daraz Products Hunter</a>
-            </h3>
-            <p>
-              A tool to find a good product for selling on Daraz.pk. This tool
-              gives the ease of categories > sub-Categories selection. It
-              provide a way to analyze the products on an Excel sheet.
-            </p>
-            <a class="demo-work" role="button" href="https://youtu.be/9i_yBNgynT8">View Demo</a>
-          </article>
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          <article class="box style2">
-            <a href="https://youtu.be/sBUfdIaRXxM" class="image featured"><img src="images/ProspectNow.png"
-                alt="" /></a>
-            <h3>
-              <a href="https://youtu.be/sBUfdIaRXxM">Real-Estate Leads</a>
-            </h3>
-            <p>
-              ProspectNow is the only AI-powered research and outreach tool
-              that's backed by the most complete property data archive in the
-              industry. With property owner info.
-            </p>
-            <a class="demo-work" role="button" href="https://youtu.be/sBUfdIaRXxM">View Demo</a>
-          </article>
-        </div>
-        <div class="col-4 col-6-medium col-12-small">
-          <article class="box style2">
-            <a href="https://youtu.be/lOAEfYLs_3g" class="image featured"><img src="images/Zillow-URL.png" alt="" /></a>
-            <h3>
-              <a href="https://youtu.be/lOAEfYLs_3g">Zillow To GoogleSheet</a>
-            </h3>
-            <p>
-              In this project, I build a script to get the Zillow Property URL
-              by searching address. After that check the current status of the
-              property and Update all the info on Google Sheets using Python.
-            </p>
-            <a class="demo-work" role="button" href="https://youtu.be/lOAEfYLs_3g">View Demo</a>
-          </article>
-        </div>
-      </div>
-      <footer>
-        <p>
-          I did a lot of other projects related to Web Automation, Web
-          Development and Scripting.
-        </p>
-        <a href="projects.html" class="button large scrolly">View more</a>
-      </footer>
-    </div>
-  </article>
+    <!-- 3. CHAOS -> PIPELINE (PINNED SHOWPIECE) -->
+    <section class="pipeline-stage" id="pipeline" data-bg-tone="surface">
+      <div class="pipeline-stage__sticky" id="pipelineSticky">
+        <div class="container pipeline-stage__header">
+          <div class="pipeline-stage__eyebrow">
+            <span class="mono">01 // ARCHITECTURE OF RELIEF</span>
+            <span class="mono pipeline-stage__progress-readout" id="pipelineStateLabel">STATE: UNSTRUCTURED_INPUT</span>
+          </div>
 
-  <!-- Contact -->
-  <article id="contact" class="wrapper style4">
-    <div class="container medium">
-      <header>
-        <h2>Contact me</h2>
-        <p>If you want to know more about me or my work send me a message.</p>
-      </header>
-      <div class="row">
-        <div class="col-12">
-          <form onsubmit="sendEmail(); reset(); return false">
-            <div class="row">
-              <div class="col-6 col-12-small">
-                <input type="text" name="name" id="name" placeholder="Name" />
+          <div class="pipeline-stage__headlines">
+            <h2 class="pipeline-stage__title pipeline-stage__title--chaos" id="chaosHeadline">
+              Manual <em class="serif-accent">chaos.</em>
+            </h2>
+            <h2 class="pipeline-stage__title pipeline-stage__title--clean" id="cleanHeadline" aria-hidden="true">
+              One <em class="serif-accent">pipeline.</em>
+            </h2>
+          </div>
+        </div>
+
+        <!-- Arena where task chips scatter then snap into 4 lanes -->
+        <div class="pipeline-arena" id="pipelineArena">
+          <!-- 4 Target Lanes -->
+          <div class="pipeline-lanes" id="pipelineLanes">
+            <div class="pipeline-lane" data-lane="0">
+              <div class="pipeline-lane__head">
+                <span class="mono pipeline-lane__num">01</span>
+                <span class="mono pipeline-lane__name">INPUT</span>
               </div>
-              <div class="col-6 col-12-small">
-                <input type="text" name="email" id="email" placeholder="Email" />
-              </div>
-              <div class="col-12">
-                <input type="text" name="subject" id="subject" placeholder="Subject" />
-              </div>
-              <div class="col-12">
-                <textarea name="message" id="message" placeholder="Message"></textarea>
-              </div>
-              <div class="col-12">
-                <span>or</span>
-                <a href="mailto:pylogicx@gmail.com">send me email directly</a>
-              </div>
-              <div class="col-12">
-                <ul class="actions">
-                  <li><input type="submit" value="Send Message"/></li>
-                  <li>
-                    <input type="reset" value="Clear Form" class="alt" />
-                  </li>
-                </ul>
-              </div>
+              <div class="pipeline-lane__slots" data-slot-lane="0"></div>
             </div>
-          </form>
+
+            <div class="pipeline-lane" data-lane="1">
+              <div class="pipeline-lane__head">
+                <span class="mono pipeline-lane__num">02</span>
+                <span class="mono pipeline-lane__name">API</span>
+              </div>
+              <div class="pipeline-lane__slots" data-slot-lane="1"></div>
+            </div>
+
+            <div class="pipeline-lane" data-lane="2">
+              <div class="pipeline-lane__head">
+                <span class="mono pipeline-lane__num">03</span>
+                <span class="mono pipeline-lane__name">LOGIC</span>
+              </div>
+              <div class="pipeline-lane__slots" data-slot-lane="2"></div>
+            </div>
+
+            <div class="pipeline-lane" data-lane="3">
+              <div class="pipeline-lane__head">
+                <span class="mono pipeline-lane__num">04</span>
+                <span class="mono pipeline-lane__name">OUTPUT</span>
+              </div>
+              <div class="pipeline-lane__slots" data-slot-lane="3"></div>
+            </div>
+
+            <!-- Glowing throughput beam running across all 4 lanes -->
+            <div class="pipeline-beam" id="pipelineBeam" aria-hidden="true">
+              <div class="pipeline-beam__pulse"></div>
+            </div>
+          </div>
+
+          <!-- Dynamic scattered chips injected here -->
+          <div class="pipeline-chips-layer" id="pipelineChipsLayer"></div>
         </div>
-        <div class="col-12">
-          <hr />
-          <h3>Find me on ...</h3>
-          <ul class="social">
-            <li>
-              <a href="https://twitter.com/selfdev__" class="icon brands fa-twitter"><span
-                  class="label">Twitter</span></a>
-            </li>
-            <li>
-              <a href="https://www.facebook.com/Selfdev.py/" class="icon brands fa-facebook-f"><span
-                  class="label">Facebook</span></a>
-            </li>
-            <li>
-              <a href="https://stackoverflow.com/users/14774093/selfdev-py" class="icon brands fa-stack-overflow"><span
-                  class="label">Stack Overflow</span></a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/ghulam-mustafa-dev/" class="icon brands fa-linkedin-in"><span
-                  class="label">LinkedIn</span></a>
-            </li>
-            <li>
-              <a href="https://medium.com/@ghulammustafapy" class="icon brands fa-medium"><span
-                  class="label">Medium</span></a>
-            </li>
-            <li>
-              <a href="https://github.com/Mustafahubs" class="icon brands fa-github"><span
-                  class="label">Github</span></a>
-            </li>
-          </ul>
-          <hr />
+
+        <div class="container pipeline-stage__footer">
+          <div class="pipeline-terminal-out" id="pipelineTerminalOut">
+            <span class="mono">$ python run.py</span>
+            <span class="mono pipeline-terminal-out__comment">&nbsp;&nbsp;# done &mdash; 0 manual clicks</span>
+          </div>
         </div>
       </div>
-      <footer>
-        <ul id="copyright">
-          <li>Designed and Developed by Mustafa</li>
-          <li>Copyright &copy; 2023</li>
-        </ul>
-      </footer>
+    </section>
+
+    <!-- 4. STATS & ABOUT -->
+    <section class="stats-section" id="about" data-bg-tone="bg">
+      <div class="stats-marquee-bg" aria-hidden="true">
+        <div class="stats-marquee-bg__track" id="statsBgWord">AUTOMATION &bull; PIPELINES &bull; REVERSE ENGINEERING &bull;</div>
+      </div>
+
+      <div class="container stats-section__inner">
+        <div class="section-head">
+          <span class="mono section-head__index">02 // PROOF OF EXECUTION</span>
+          <h2 class="section-head__title">Built in production, <em class="serif-accent">not tutorials.</em></h2>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+          <article class="stat-card">
+            <div class="stat-card__num" data-count="200" data-suffix="+">200+</div>
+            <div class="stat-card__label">Client Projects Delivered</div>
+            <div class="mono stat-card__sub">Fiverr &amp; Upwork since 2021</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__num" data-count="4.9" data-decimals="1" data-suffix="&#9733;">4.9&#9733;</div>
+            <div class="stat-card__label">Average Client Rating</div>
+            <div class="mono stat-card__sub">Level 2 in 6 months</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__num stat-card__num--text">TOP RATED</div>
+            <div class="stat-card__label">Upwork Status</div>
+            <div class="mono stat-card__sub">Verified production track</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card__num" data-count="5" data-suffix="+ YRS">5+ YRS</div>
+            <div class="stat-card__label">Commercial Engineering</div>
+            <div class="mono stat-card__sub">Founder, Mustafa Code Sol Ltd</div>
+          </article>
+        </div>
+
+        <div class="about-editorial" id="aboutEditorial">
+          <div class="about-editorial__lead">
+            <p>
+              I'm <strong>Ghulam Mustafa</strong> — founder of <strong>Mustafa Code Sol Ltd</strong> (Companies House UK, incorporated Feb 2025) and a backend &amp; automation engineer based in Bahawalnagar, Pakistan.
+            </p>
+            <p>
+              Instead of brittle DOM scrapers that break on every CSS tweak, I reverse-engineer undocumented web APIs, wrap legacy systems in clean FastAPI services, and give non-technical teams Discord or Telegram bots as simple control panels.
+            </p>
+          </div>
+          <div class="about-editorial__pillars" id="aboutPillars"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROJECTS (PINNED HORIZONTAL ON DESKTOP, STICKY STACK ON MOBILE) -->
+    <section class="projects-section" id="projects" data-bg-tone="surface">
+      <div class="projects-header container">
+        <div class="projects-header__top">
+          <div>
+            <span class="mono section-head__index">03 // SELECTED SYSTEMS</span>
+            <h2 class="section-head__title">Fifteen pipelines <em class="serif-accent">in the wild.</em></h2>
+          </div>
+          <div class="projects-counter" aria-live="polite">
+            <span class="projects-counter__current" id="projectIndexCurrent">01</span>
+            <span class="projects-counter__sep">/</span>
+            <span class="projects-counter__total" id="projectIndexTotal">15</span>
+          </div>
+        </div>
+
+        <div class="projects-filters" id="projectFilters" role="tablist" aria-label="Filter projects by category"></div>
+      </div>
+
+      <div class="projects-viewport" id="projectsViewport">
+        <div class="projects-track" id="projectsTrack"></div>
+
+        <div class="projects-progress container">
+          <div class="projects-progress__track">
+            <div class="projects-progress__fill" id="projectsProgressFill"></div>
+          </div>
+          <span class="mono projects-progress__hint">CLICK ANY SYSTEM FOR ARCHITECTURE &amp; OUTCOME</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SKILLS -->
+    <section class="skills-section" id="skills" data-bg-tone="bg">
+      <div class="skills-marquees" aria-hidden="true">
+        <div class="marquee-row" data-direction="-1">
+          <div class="marquee-row__inner">
+            <span>PYTHON &bull; FASTAPI &bull; REVERSE ENGINEERING &bull; DRISSIONPAGE &bull; POSTGRESQL &bull; REDIS &bull; </span>
+            <span>PYTHON &bull; FASTAPI &bull; REVERSE ENGINEERING &bull; DRISSIONPAGE &bull; POSTGRESQL &bull; REDIS &bull; </span>
+          </div>
+        </div>
+        <div class="marquee-row marquee-row--accent" data-direction="1">
+          <div class="marquee-row__inner">
+            <span>MCP SERVERS &bull; DISCORD.PY &bull; CELERY &bull; DOCKER &bull; TEXTUAL TUI &bull; CHROME DEVTOOLS &bull; </span>
+            <span>MCP SERVERS &bull; DISCORD.PY &bull; CELERY &bull; DOCKER &bull; TEXTUAL TUI &bull; CHROME DEVTOOLS &bull; </span>
+          </div>
+        </div>
+        <div class="marquee-row" data-direction="-1">
+          <div class="marquee-row__inner">
+            <span>REACT &bull; FLUTTER &bull; AWS SIGV4 &bull; GITHUB ACTIONS &bull; SQLALCHEMY &bull; CLAUDE CODE &bull; </span>
+            <span>REACT &bull; FLUTTER &bull; AWS SIGV4 &bull; GITHUB ACTIONS &bull; SQLALCHEMY &bull; CLAUDE CODE &bull; </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container skills-section__inner">
+        <div class="section-head">
+          <span class="mono section-head__index">04 // CAPABILITY MATRIX</span>
+          <h2 class="section-head__title">Tools chosen for <em class="serif-accent">throughput &amp; uptime.</em></h2>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- 7. EXPERIENCE TIMELINE -->
+    <section class="experience-section" id="experience" data-bg-tone="surface">
+      <div class="container">
+        <div class="section-head">
+          <span class="mono section-head__index">05 // CAREER TRACK</span>
+          <h2 class="section-head__title">Five years of <em class="serif-accent">shipping code.</em></h2>
+        </div>
+
+        <div class="timeline" id="experienceTimeline">
+          <svg class="timeline__svg" id="timelineSvg" viewBox="0 0 4 1000" preserveAspectRatio="none" aria-hidden="true">
+            <line class="timeline__line-bg" x1="2" y1="0" x2="2" y2="1000" />
+            <line class="timeline__line-fill" id="timelineLineFill" x1="2" y1="0" x2="2" y2="1000" />
+          </svg>
+          <div class="timeline__items" id="timelineItems"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SERVICES -->
+    <section class="services-section" id="services" data-bg-tone="bg">
+      <div class="container">
+        <div class="section-head">
+          <span class="mono section-head__index">06 // ENGAGEMENTS</span>
+          <h2 class="section-head__title">Seven ways I <em class="serif-accent">remove bottlenecks.</em></h2>
+        </div>
+
+        <div class="services-list" id="servicesList"></div>
+      </div>
+    </section>
+
+    <!-- 9. CONTACT & FOOTER -->
+    <section class="contact-section" id="contact" data-bg-tone="surface">
+      <div class="container contact-section__inner">
+        <span class="mono section-head__index">07 // INITIATE HANDSHAKE</span>
+        <h2 class="contact-section__title">
+          Let's <em class="serif-accent">automate it.</em>
+        </h2>
+        <p class="contact-section__lead">
+          Send the repetitive workflow, undocumented API, or messy spreadsheet you want eliminated. I'll map the pipeline.
+        </p>
+
+        <div class="contact-section__ctas">
+          <a href="mailto:ghulammustafapy@gmail.com" class="btn btn--primary btn--xl magnetic" data-cursor="SEND">
+            <span>ghulammustafapy@gmail.com</span>
+          </a>
+          <button type="button" class="btn btn--ghost btn--xl magnetic" id="copyEmailBtn" data-email="ghulammustafapy@gmail.com">
+            <span id="copyEmailLabel">Copy Email Address</span>
+          </button>
+        </div>
+
+        <div class="contact-links" id="contactLinks"></div>
+
+        <footer class="site-footer">
+          <div class="site-footer__left">
+            <span class="mono">&copy; <span id="footerYear">2026</span> Ghulam Mustafa &bull; Mustafa Code Sol Ltd (UK)</span>
+            <span class="mono site-footer__clock" id="liveClock">Bahawalnagar &mdash; --:-- PKT</span>
+          </div>
+          <button type="button" class="back-to-top magnetic" id="backToTopBtn" aria-label="Back to top">
+            <span class="mono">BACK TO TOP</span>
+            <span class="back-to-top__arrow" aria-hidden="true">&uarr;</span>
+          </button>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- CASE STUDY FULL-SCREEN OVERLAY -->
+  <div class="case-modal" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle" hidden>
+    <div class="case-modal__backdrop" id="caseModalBackdrop"></div>
+    <div class="case-modal__sheet" id="caseModalSheet">
+      <div class="case-modal__bar">
+        <span class="mono case-modal__meta" id="caseModalMeta">01 / AUTOMATION</span>
+        <button type="button" class="case-modal__close" id="caseModalClose" aria-label="Close case study">
+          <span class="mono">ESC // CLOSE</span>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="case-modal__scroll" id="caseModalBody"></div>
     </div>
-  </article>
+  </div>
 
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrolly.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
-  <!-- Contact Form Scripts -->
-  <script src="assets/js/smtp.js"></script>
+  <!-- PALETTE PICKER DOCK (BOTTOM-LEFT) -->
+  <aside class="palette-dock" aria-label="Color theme switcher">
+    <div class="palette-dock__swatches" id="paletteSwatches"></div>
+  </aside>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Pinned CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+
+  <!-- Portfolio Data & Main Logic -->
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/sections.js" defer></script>
 </body>
-
 </html>
