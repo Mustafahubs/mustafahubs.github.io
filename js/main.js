@@ -413,56 +413,119 @@
       });
     });
 
-    // 9. Chaos -> Pipeline
+    // 9. Chaos -> Pipeline (fully scrubbed + reversible, headline morphs letter by letter)
     const pipelineStage = document.getElementById('pipeline');
     const pipelineChipsLayer = document.getElementById('pipelineChipsLayer');
     const slotLanes = document.querySelectorAll('[data-slot-lane]');
     const chipCount = window.innerWidth < 700 ? 20 : 36;
-    let chips = [];
+
+    const splitChars = (el) => {
+      const label = el.textContent.trim().replace(/\s+/g, ' ');
+      const chars = [];
+      const tmp = document.createElement('div');
+      const walk = (node, parent) => {
+        node.childNodes.forEach(n => {
+          if (n.nodeType === 3) {
+            n.textContent.split(/(\s+)/).forEach(part => {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { parent.appendChild(document.createTextNode(' ')); return; }
+              const w = document.createElement('span');
+              w.className = 'hl-word';
+              w.setAttribute('aria-hidden', 'true');
+              [...part].forEach(ch => {
+                const s = document.createElement('span');
+                s.className = 'hl-char';
+                s.textContent = ch;
+                w.appendChild(s);
+                chars.push(s);
+              });
+              parent.appendChild(w);
+            });
+          } else if (n.nodeType === 1) {
+            const c = n.cloneNode(false);
+            parent.appendChild(c);
+            walk(n, c);
+          }
+        });
+      };
+      walk(el, tmp);
+      el.setAttribute('aria-label', label);
+      el.textContent = '';
+      while (tmp.firstChild) el.appendChild(tmp.firstChild);
+      return chars;
+    };
 
     if (pipelineStage && pipelineChipsLayer) {
-      // Create slots inside lanes
+      const sticky = document.getElementById('pipelineSticky');
+      const stateLabel = document.getElementById('pipelineStateLabel');
+      const lanes = document.querySelectorAll('.pipeline-lane');
+      const slotsPerLane = Math.ceil(chipCount / 4);
+      const rnd = gsap.utils.random;
+
       slotLanes.forEach(slotContainer => {
         slotContainer.innerHTML = '';
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < slotsPerLane; i++) {
           const slot = document.createElement('div');
           slot.className = 'pipeline-slot';
           slotContainer.appendChild(slot);
         }
       });
 
-      // Generate chips
-      const arenaRect = pipelineChipsLayer.getBoundingClientRect();
+      pipelineChipsLayer.innerHTML = '';
+      const chips = [];
       for (let i = 0; i < chipCount; i++) {
-        const chip = document.createElement('div');
-        chip.className = 'chaos-chip';
-        const labelText = CHIPS_LIST[i % CHIPS_LIST.length];
-        chip.innerHTML = `<span class="chaos-chip__dot"></span><span>${labelText}</span>`;
-        
-        // Random scatter coordinates within arena
-        const rx = Math.random() * (window.innerWidth > 800 ? 700 : 260) + 20;
-        const ry = Math.random() * 220 + 20;
-        const rRot = (Math.random() - 0.5) * 70;
-
-        gsap.set(chip, { x: rx, y: ry, rotation: rRot });
-        pipelineChipsLayer.appendChild(chip);
-
-        // Infinite jitter tween
-        const jitter = gsap.to(chip, {
-          x: rx + (Math.random() - 0.5) * 30,
-          y: ry + (Math.random() - 0.5) * 30,
-          rotation: rRot + (Math.random() - 0.5) * 10,
-          duration: 1.5 + Math.random(),
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut'
-        });
-
-        chips.push({ element: chip, jitterTween: jitter, lane: i % 4 });
+        const el = document.createElement('div');
+        el.className = 'chaos-chip';
+        el.innerHTML = '<span class="chaos-chip__box"><span class="chaos-chip__dot"></span><span>' + CHIPS_LIST[i % CHIPS_LIST.length] + '</span></span>';
+        el.style.setProperty('--jx', ((Math.random() - 0.5) * 26).toFixed(1) + 'px');
+        el.style.setProperty('--jy', ((Math.random() - 0.5) * 26).toFixed(1) + 'px');
+        el.style.setProperty('--jr', ((Math.random() - 0.5) * 10).toFixed(1) + 'deg');
+        el.style.setProperty('--jd', (1.4 + Math.random() * 1.2).toFixed(2) + 's');
+        pipelineChipsLayer.appendChild(el);
+        chips.push({ el, lane: i % 4, slot: Math.floor(i / 4), rx: Math.random(), ry: Math.random(), rot: (Math.random() - 0.5) * 70, delay: Math.random() });
       }
 
-      // ScrollTrigger Pin & Timeline
+      const layerRect = () => pipelineChipsLayer.getBoundingClientRect();
+      const chaosPos = (c) => {
+        const r = layerRect();
+        return { x: c.rx * Math.max(10, r.width - (c.el.offsetWidth || 120)), y: c.ry * Math.max(10, r.height - (c.el.offsetHeight || 28)) };
+      };
+      const slotPos = (c) => {
+        const slot = slotLanes[c.lane].querySelectorAll('.pipeline-slot')[c.slot];
+        const sr = slot.getBoundingClientRect();
+        const lr = layerRect();
+        return { x: sr.left - lr.left, y: sr.top - lr.top };
+      };
+
+      // headline letters: "Manual chaos." (distressed) -> "One pipeline." (clean)
+      const chaosEl = document.getElementById('chaosHeadline');
+      const cleanEl = document.getElementById('cleanHeadline');
+      const chaosChars = chaosEl ? splitChars(chaosEl) : [];
+      const cleanChars = cleanEl ? splitChars(cleanEl) : [];
+      gsap.set(chaosChars, { x: () => rnd(-5, 5), y: () => rnd(-9, 9), rotation: () => rnd(-11, 11) });
+      if (cleanEl) gsap.set(cleanEl, { opacity: 1 });
+      gsap.set(cleanChars, { opacity: 0, x: () => rnd(-90, 90), y: () => rnd(-70, 70), rotation: () => rnd(-60, 60) });
+
+      let last = { ordered: null, aligned: null, locked: null };
+      const apply = (p) => {
+        const ordered = p > 0.42, aligned = p > 0.5, locked = p > 0.64;
+        if (ordered !== last.ordered) {
+          last.ordered = ordered;
+          sticky.classList.toggle('is-ordered', ordered);
+          if (stateLabel) stateLabel.textContent = ordered ? 'STATE: PIPELINE_ACTIVE' : 'STATE: UNSTRUCTURED_INPUT';
+        }
+        if (aligned !== last.aligned) {
+          last.aligned = aligned;
+          chips.forEach(c => c.el.classList.toggle('is-aligned', aligned));
+        }
+        if (locked !== last.locked) {
+          last.locked = locked;
+          lanes.forEach(l => l.classList.toggle('is-locked', locked));
+        }
+      };
+
       const pipelineTl = gsap.timeline({
+        defaults: { ease: 'none' },
         scrollTrigger: {
           trigger: '#pipeline',
           start: 'top top',
@@ -470,53 +533,26 @@
           pin: '#pipelineSticky',
           scrub: true,
           anticipatePin: 1,
-          invalidateOnRefresh: true
+          invalidateOnRefresh: true,
+          onUpdate: self => apply(self.progress)
         }
       });
 
-      pipelineTl.to({}, { duration: 0.15 }) // Hold chaos
-        .to({}, {
-          duration: 0.55,
-          onUpdate: function() {
-            const prog = this.progress();
-            if (prog > 0.15) {
-              chips.forEach(c => c.jitterTween.pause());
-            }
-          },
-          onStart: () => {
-            // Assign chips to slot targets
-            chips.forEach((c, idx) => {
-              const laneSlots = slotLanes[c.lane].querySelectorAll('.pipeline-slot');
-              const targetSlot = laneSlots[idx % laneSlots.length];
-              const slotRect = targetSlot.getBoundingClientRect();
-              const arenaRectCurrent = pipelineChipsLayer.getBoundingClientRect();
-              
-              const tx = slotRect.left - arenaRectCurrent.left;
-              const ty = slotRect.top - arenaRectCurrent.top;
+      chips.forEach(c => {
+        pipelineTl.fromTo(c.el,
+          { x: () => chaosPos(c).x, y: () => chaosPos(c).y, rotation: c.rot },
+          { x: () => slotPos(c).x, y: () => slotPos(c).y, rotation: 0, duration: 0.3, ease: 'power3.inOut' },
+          0.12 + c.delay * 0.22);
+      });
 
-              gsap.to(c.element, {
-                x: tx,
-                y: ty,
-                rotation: 0,
-                duration: 1,
-                ease: 'power3.out',
-                overwrite: 'auto',
-                onComplete: () => c.element.classList.add('is-aligned')
-              });
-            });
-          }
-        })
-        .to('#chaosHeadline', { opacity: 0, duration: 0.05 }, 0.4)
-        .to('#cleanHeadline', { opacity: 1, duration: 0.05 }, 0.4)
-        .add(() => {
-          const stateLabel = document.getElementById('pipelineStateLabel');
-          if (stateLabel) stateLabel.textContent = 'STATE: PIPELINE_ACTIVE';
-        }, 0.4)
-        .to('#pipelineBeam', { scaleX: 1, duration: 0.2 }, 0.7)
-        .add(() => {
-          document.querySelectorAll('.pipeline-lane').forEach(l => l.classList.add('is-locked'));
-        }, 0.7)
-        .to('#pipelineTerminalOut', { opacity: 1, y: 0, duration: 0.1 }, 0.9);
+      pipelineTl
+        .to(chaosChars, { opacity: 0, x: () => rnd(-120, 120), y: () => rnd(-90, 90), rotation: () => rnd(-70, 70), duration: 0.16, ease: 'power2.in', stagger: { each: 0.012, from: 'random' } }, 0.28)
+        .to(cleanChars, { opacity: 1, x: 0, y: 0, rotation: 0, duration: 0.2, ease: 'power3.out', stagger: { each: 0.014, from: 'random' } }, 0.4)
+        .fromTo('#pipelineBeam', { scaleX: 0 }, { scaleX: 1, duration: 0.2 }, 0.64)
+        .fromTo('#pipelineTerminalOut', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.12 }, 0.86)
+        .to({}, { duration: 0.02 }, 0.98);
+
+      apply(0);
     }
 
     // 10. Stats Counter & Marquee

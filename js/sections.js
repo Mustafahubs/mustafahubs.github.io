@@ -35,7 +35,7 @@
     const pillars = getPillars();
     container.innerHTML = pillars.map((p, i) => `
       <div class="pillar-item" data-reveal>
-        <div class="pillar-item__title">0${i + 1} // ${esc(p.title)}</div>
+        <div class="pillar-item__title">${esc(p.title)}</div>
         <div class="pillar-item__desc">${esc(p.text)}</div>
       </div>
     `).join('');
@@ -101,7 +101,6 @@
           </div>
           <div class="project-card__content">
             <div class="project-card__top">
-              <span class="mono project-card__index">${idxStr}</span>
               <span class="mono project-card__cat">${esc(p.category)}</span>
             </div>
             <h3 class="project-card__title">${esc(p.title)}</h3>
@@ -192,15 +191,15 @@
       <div class="case-modal__tech-wrap">${techHtml}</div>
       <div class="case-modal__blocks">
         <div class="case-modal__block">
-          <span class="mono">01 // THE PROBLEM</span>
+          <span class="mono">THE PROBLEM</span>
           <p>${esc(p.problem)}</p>
         </div>
         <div class="case-modal__block">
-          <span class="mono">02 // WHAT I BUILT</span>
+          <span class="mono">WHAT I BUILT</span>
           <p>${esc(p.built)}</p>
         </div>
         <div class="case-modal__block">
-          <span class="mono">03 // OUTCOME</span>
+          <span class="mono">OUTCOME</span>
           <p>${esc(p.outcome)}</p>
         </div>
       </div>
@@ -336,7 +335,6 @@
     list.innerHTML = services.map((s, i) => `
       <div class="service-row ${i === 0 ? 'is-open' : ''}">
         <button type="button" class="service-row__header" aria-expanded="${i === 0 ? 'true' : 'false'}">
-          <span class="mono service-row__num">${esc(s.num)}</span>
           <span class="service-row__title">${esc(s.title)}</span>
           <span class="service-row__arrow" aria-hidden="true">&darr;</span>
         </button>
@@ -405,10 +403,9 @@
     if (reduced) return;
     const headings = document.querySelectorAll('section h2');
     headings.forEach(h2 => {
-      if (!h2.querySelector('.line-inner')) {
-        const txt = h2.textContent;
-        h2.innerHTML = `<span class="line-mask"><span class="line-inner">${esc(txt)}</span></span>`;
-      }
+      // keep existing markup (italic accent words); pipeline headlines are handled in main.js
+      if (h2.closest('.pipeline-stage') || h2.querySelector('.line-inner')) return;
+      h2.innerHTML = '<span class="line-mask"><span class="line-inner">' + h2.innerHTML + '</span></span>';
     });
 
     if (ScrollTrigger) {

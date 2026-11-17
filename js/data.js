@@ -4,13 +4,13 @@ window.PORTFOLIO_DATA = {
     shortName: "Mustafa",
     company: "Mustafa Code Sol Ltd",
     location: "Bahawalnagar, Pakistan",
-    tagline: "I build the automation, APIs and bots that replace manual work.",
+    tagline: "I build automations and add-ons on the tools and websites solo business owners already use — so the manual work stops.",
     roles: [
-      "Python Automation Engineer",
+      "Automation Builder for Solo Business Owners",
+      "Add-on & Extension Developer",
       "API Reverse-Engineering Specialist",
-      "FastAPI Backend Developer",
       "Discord & Telegram Bot Builder",
-      "Full-Stack Freelancer"
+      "FastAPI Backend Developer"
     ],
     email: "ghulammustafapy@gmail.com",
     resumeNote: "Private repository (client work) - walkthrough on request"
@@ -22,22 +22,10 @@ window.PORTFOLIO_DATA = {
     { value: 5, suffix: "+", decimals: 0, label: "Years Experience", sub: "Freelancing & engineering" }
   ],
   pillars: [
-    {
-      title: "API Reverse-Engineering",
-      text: "Replacing fragile DOM scraping with direct, undocumented web API interception for robust and reliable data pipelines."
-    },
-    {
-      title: "Bots as Interfaces",
-      text: "Building Discord and Telegram bots that serve as seamless operational UIs for non-technical teams."
-    },
-    {
-      title: "Production CI/CD",
-      text: "Deploying self-hosted and cloud backends with robust containerization, automated testing, and zero-downtime workflows."
-    },
-    {
-      title: "AI-Assisted Engineering",
-      text: "Leveraging modern AI tooling like Claude Code, MCP servers, and local LLMs to accelerate development velocity."
-    }
+    { title: "Built on your tools", text: "Whatever website or software your business runs on — CRM, marketplace, listing, booking or practice platform — I build the automation on top of it, so you never have to switch tools." },
+    { title: "Add-ons the tool never had", text: "When a platform is missing the feature you need, I build it: bots, browser extensions and small desktop apps that plug straight into it." },
+    { title: "Simple enough to run alone", text: "A chat command in Discord or Telegram, or a one-click app. No technical setup, and nobody to babysit it." },
+    { title: "Built to keep running", text: "Reverse-engineered APIs instead of fragile scraping, hosted and monitored, with documentation so it still makes sense months later." }
   ],
   projects: [
     {
@@ -340,41 +328,13 @@ window.PORTFOLIO_DATA = {
     }
   ],
   services: [
-    {
-      num: "01",
-      title: "Browser automation and scraping",
-      desc: "Bypassing complex anti-bot systems and building robust data extraction pipelines using modern tools."
-    },
-    {
-      num: "02",
-      title: "API reverse-engineering and integration",
-      desc: "Intercepting and wrapping undocumented web APIs to build stable integrations without fragile DOM scraping."
-    },
-    {
-      num: "03",
-      title: "FastAPI/Django backends",
-      desc: "Designing high-performance, asynchronous backends with comprehensive testing and clean architecture."
-    },
-    {
-      num: "04",
-      title: "Discord and Telegram bots",
-      desc: "Creating feature-rich bots that serve as seamless operational interfaces for non-technical teams."
-    },
-    {
-      num: "05",
-      title: "Healthcare/EHR, real-estate and ticketing integrations",
-      desc: "Developing specialized automation pipelines and compliant integrations for regulated industry platforms."
-    },
-    {
-      num: "06",
-      title: "Self-hosting and deployment",
-      desc: "Setting up production-ready Linux servers, Docker containers, reverse proxies, and automated CI/CD pipelines."
-    },
-    {
-      num: "07",
-      title: "Python teaching and mentoring",
-      desc: "Providing expert guidance, code reviews, and structured instruction in Python and software engineering."
-    }
+    { num: "", title: "Automations on the tools you already use", desc: "Tell me which website or software your business runs on. I automate the repetitive clicks, exports and data entry on it." },
+    { num: "", title: "Add-ons for your platforms", desc: "Missing a feature? I build bots, browser extensions and small apps that plug straight into the tools you use." },
+    { num: "", title: "Discord & Telegram bots", desc: "Run your workflow from a chat command. A simple control panel for owners who don't want another dashboard." },
+    { num: "", title: "Sync between your tools", desc: "Move data between the sites and systems you use — listings, orders, contacts, bookings — automatically and without duplicates." },
+    { num: "", title: "Industry platforms I've built on", desc: "Real estate, event ticketing, healthcare practice management and e-commerce marketplaces." },
+    { num: "", title: "Backends, hosting & upkeep", desc: "FastAPI and Django services, servers, deployment and monitoring, so the automation keeps running." },
+    { num: "", title: "Handover & teaching", desc: "Clear documentation and Python mentoring, so you or your team can understand and change what I built." }
   ],
   links: [
     { label: "Email", url: "mailto:ghulammustafapy@gmail.com", type: "email" },
