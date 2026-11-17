@@ -189,7 +189,7 @@ button {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9800;
+    z-index: 10050;
     pointer-events: none;
   }
 
