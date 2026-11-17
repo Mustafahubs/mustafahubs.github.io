@@ -1525,3 +1525,12 @@ body[data-tone="surface"] { background-color: var(--surface); }
 .pipeline-stage { --slot-h: clamp(28px, 4svh, 50px); }
 .chaos-chip__box { font-size: clamp(0.68rem, 1.5svh, 0.95rem); }
 @media (max-width: 819px) { .pipeline-stage { --slot-h: clamp(26px, 3.6svh, 40px); } }
+
+/* ===== PART 7 - gallery cards: photo fills the card, scales on tall windows ===== */
+@media (min-width: 960px) {
+  .projects-section.is-horizontal .project-card { max-height: clamp(520px, 64svh, 900px); }
+  .projects-section.is-horizontal .project-card__media { aspect-ratio: auto; height: 100%; min-height: 0; }
+  .projects-section.is-horizontal .project-card__media img,
+  .projects-section.is-horizontal .project-card__media > div,
+  .projects-section.is-horizontal .project-card__media svg { width: 100%; height: 100%; object-fit: cover; }
+}
