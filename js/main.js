@@ -9,12 +9,16 @@
     'gallery-cobalt': { bg: '#FAFAFA', accent: '#2F3BFF' }
   };
 
-  const CHIPS_LIST = [
-    'copy-paste', 'export.csv', 'tab 14', 'login again', 'CAPTCHA',
-    'OTP code', 'reply to email', 're-type row 212', 'update sheet',
-    'check price', 'refresh page', 'download PDF', 'rename file',
-    '2FA', 'paste into CRM', 'merge cells', 'VLOOKUP', 'screenshot',
-    'forward email', 'retry'
+  // Real business chores, grouped by where they land in the pipeline (first 5 of each are used on phones)
+  const LANE_CHIPS = [
+    // COMES IN - work that arrives
+    ['new order email', 'customer message', 'booking request', 'new lead form', 'invoice PDF', 'spreadsheet row', 'support ticket', 'listing alert', 'payment notice'],
+    // YOUR TOOLS - talking to the sites and software you already use
+    ['log in', 'read inbox', 'pull report', 'check prices', 'fetch orders', 'export CSV', 'handle 2FA code', 'download invoice', 'fetch listings'],
+    // THE RULES - decisions
+    ['remove duplicates', 'match records', 'apply price rule', 'validate fields', 'flag exceptions', 'calculate totals', 'check stock', 'score the lead', 'match event names'],
+    // DONE FOR YOU - results
+    ['update sheet', 'send reply', 'post listing', 'alert on Discord', 'create invoice', 'file the report', 'sync inventory', 'notify team', 'log the result']
   ];
 
   const html = document.documentElement;
@@ -473,17 +477,20 @@
 
       pipelineChipsLayer.innerHTML = '';
       const chips = [];
-      for (let i = 0; i < chipCount; i++) {
+      const plan = [];
+      LANE_CHIPS.forEach((labels, lane) => labels.slice(0, slotsPerLane).forEach((label, slot) => plan.push({ label, lane, slot })));
+      plan.sort(() => Math.random() - 0.5);
+      plan.forEach(p => {
         const el = document.createElement('div');
         el.className = 'chaos-chip';
-        el.innerHTML = '<span class="chaos-chip__box"><span class="chaos-chip__dot"></span><span>' + CHIPS_LIST[i % CHIPS_LIST.length] + '</span></span>';
+        el.innerHTML = '<span class="chaos-chip__box"><span class="chaos-chip__dot"></span><span>' + p.label + '</span></span>';
         el.style.setProperty('--jx', ((Math.random() - 0.5) * 26).toFixed(1) + 'px');
         el.style.setProperty('--jy', ((Math.random() - 0.5) * 26).toFixed(1) + 'px');
         el.style.setProperty('--jr', ((Math.random() - 0.5) * 10).toFixed(1) + 'deg');
         el.style.setProperty('--jd', (1.4 + Math.random() * 1.2).toFixed(2) + 's');
         pipelineChipsLayer.appendChild(el);
-        chips.push({ el, lane: i % 4, slot: Math.floor(i / 4), rx: Math.random(), ry: Math.random(), rot: (Math.random() - 0.5) * 70, delay: Math.random() });
-      }
+        chips.push({ el, lane: p.lane, slot: p.slot, rx: Math.random(), ry: Math.random(), rot: (Math.random() - 0.5) * 60, delay: Math.random() });
+      });
 
       const layerRect = () => pipelineChipsLayer.getBoundingClientRect();
       const chaosPos = (c) => {
@@ -502,7 +509,6 @@
       const cleanEl = document.getElementById('cleanHeadline');
       const chaosChars = chaosEl ? splitChars(chaosEl) : [];
       const cleanChars = cleanEl ? splitChars(cleanEl) : [];
-      gsap.set(chaosChars, { x: () => rnd(-5, 5), y: () => rnd(-9, 9), rotation: () => rnd(-11, 11) });
       if (cleanEl) gsap.set(cleanEl, { opacity: 1 });
       gsap.set(cleanChars, { opacity: 0, x: () => rnd(-90, 90), y: () => rnd(-70, 70), rotation: () => rnd(-60, 60) });
 

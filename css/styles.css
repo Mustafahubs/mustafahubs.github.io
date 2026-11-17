@@ -1512,3 +1512,16 @@ body[data-tone="surface"] { background-color: var(--surface); }
 .pipeline-stage__title { font-size: clamp(2.2rem, min(5.5vw, 7.5svh), 6.2rem); }
 @media (max-width: 819px) { .pipeline-stage { --slot-h: clamp(26px, 3.6svh, 44px); } }
 .pipeline-stage__sticky { padding-bottom: max(5rem, clamp(1.5rem, 3vh, 2.25rem)); }
+
+
+/* ===== PART 6 - chaos headline: readable, restrained ===== */
+.pipeline-stage__title--chaos { text-shadow: none; animation: hl-flicker 3.4s steps(1) infinite; }
+.pipeline-stage__title--chaos .hl-word { transform: rotate(-1.4deg); }
+.pipeline-stage__title--chaos .serif-accent .hl-word { transform: rotate(1.8deg); }
+@keyframes hl-flicker { 0%, 94%, 100% { opacity: 1; transform: none; } 95% { opacity: 0.8; transform: translateX(2px); } 97% { opacity: 1; transform: translateX(-2px); } }
+@media (prefers-reduced-motion: reduce) { .pipeline-stage__title--chaos { animation: none !important; } }
+
+/* cap chip/slot size on very tall windows */
+.pipeline-stage { --slot-h: clamp(28px, 4svh, 50px); }
+.chaos-chip__box { font-size: clamp(0.68rem, 1.5svh, 0.95rem); }
+@media (max-width: 819px) { .pipeline-stage { --slot-h: clamp(26px, 3.6svh, 40px); } }
