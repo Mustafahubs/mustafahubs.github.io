@@ -421,7 +421,7 @@
     const pipelineStage = document.getElementById('pipeline');
     const pipelineChipsLayer = document.getElementById('pipelineChipsLayer');
     const slotLanes = document.querySelectorAll('[data-slot-lane]');
-    const chipCount = window.innerWidth < 700 ? 20 : 36;
+    const chipCount = (window.innerWidth < 700 || window.innerHeight < 520) ? 20 : 36;
 
     const splitChars = (el) => {
       const label = el.textContent.trim().replace(/\s+/g, ' ');

@@ -1549,3 +1549,28 @@ html, a, button, [role="button"], .project-card, .service-row__header, .filter-c
   .projects-section:not(.is-horizontal) .project-card:last-child { margin-bottom: 0; }
   .projects-section:not(.is-horizontal) .project-card__media { aspect-ratio: 16 / 10; max-height: 34svh; }
 }
+
+/* ===== PART 9 - phones in landscape (short screens) ===== */
+@media (orientation: landscape) and (max-height: 560px) {
+  /* pipeline stage must fit one short screen */
+  .pipeline-stage { --slot-h: clamp(18px, 6svh, 24px); }
+  .pipeline-stage__sticky { justify-content: flex-start; gap: 0.35rem; padding-top: 3.4rem; padding-bottom: 0.6rem; }
+  .pipeline-stage__header { margin-bottom: 0; }
+  .pipeline-stage__headlines { min-height: 0; margin-top: 0.2rem; }
+  .pipeline-stage__title { font-size: clamp(1.5rem, 8svh, 2.2rem); }
+  .pipeline-arena { flex: 0 0 auto; min-height: 0; align-items: flex-start; }
+  .pipeline-lane { padding: 0.4rem 0.55rem; }
+  .pipeline-lane__head { padding-bottom: 0.25rem; margin-bottom: 0.3rem; }
+  .chaos-chip__box { font-size: 0.6rem; padding-inline: 0.45rem; }
+  .pipeline-terminal-out { padding: 0.3rem 0.7rem; font-size: 0.75rem; }
+  /* project cards: side by side, normal flow (a sticky stack is taller than the screen) */
+  .projects-section:not(.is-horizontal) .project-card { position: relative; top: auto; margin-bottom: 1.25rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: stretch; }
+  .projects-section:not(.is-horizontal) .project-card:last-child { margin-bottom: 0; }
+  .projects-section:not(.is-horizontal) .project-card__media { aspect-ratio: auto; max-height: none; height: 100%; min-height: 220px; }
+  .projects-section:not(.is-horizontal) .project-card__media img { height: 100%; object-fit: cover; }
+  .projects-section:not(.is-horizontal) .project-card__content { padding: 1rem 1.25rem; }
+  .projects-section:not(.is-horizontal) .project-card__title { font-size: clamp(1.2rem, 4svh, 1.6rem); }
+}
+@media (orientation: landscape) and (max-height: 560px) {
+  .palette-dock { left: auto; right: 0.75rem; bottom: 0.6rem; transform: scale(0.82); transform-origin: right bottom; }
+}
