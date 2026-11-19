@@ -1545,7 +1545,7 @@ html, a, button, [role="button"], .project-card, .service-row__header, .filter-c
 /* project stack: each card stays fully readable before the next one slides over it */
 @media (max-width: 959px) {
   .projects-section:not(.is-horizontal) .projects-track { gap: 0; }
-  .projects-section:not(.is-horizontal) .project-card { margin-bottom: 32svh; }
+  .projects-section:not(.is-horizontal) .project-card { margin-bottom: 46svh; }
   .projects-section:not(.is-horizontal) .project-card:last-child { margin-bottom: 0; }
   .projects-section:not(.is-horizontal) .project-card__media { aspect-ratio: 16 / 10; max-height: 34svh; }
 }
