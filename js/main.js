@@ -665,7 +665,7 @@
           minute: '2-digit',
           hour12: false
         });
-        liveClock.textContent = `Bahawalnagar — ${formatter.format(new Date())} PKT`;
+        liveClock.textContent = `Bahawalnagar · ${formatter.format(new Date())} PKT`;
       }
       updateClock();
       setInterval(updateClock, 20000);

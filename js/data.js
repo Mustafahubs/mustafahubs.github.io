@@ -4,7 +4,7 @@ window.PORTFOLIO_DATA = {
     shortName: "Mustafa",
     company: "Mustafa Code Sol Ltd",
     location: "Bahawalnagar, Pakistan",
-    tagline: "I build automations and add-ons on the tools and websites solo business owners already use — so the manual work stops.",
+    tagline: "I build automations and add-ons on the tools and websites solo business owners already use, so the manual work stops.",
     roles: [
       "Automation Builder for Solo Business Owners",
       "Add-on & Extension Developer",
@@ -22,7 +22,7 @@ window.PORTFOLIO_DATA = {
     { value: 5, suffix: "+", decimals: 0, label: "Years Experience", sub: "Freelancing & engineering" }
   ],
   pillars: [
-    { title: "Built on your tools", text: "Whatever website or software your business runs on — CRM, marketplace, listing, booking or practice platform — I build the automation on top of it, so you never have to switch tools." },
+    { title: "Built on your tools", text: "Whatever website or software your business runs on (CRM, marketplace, listing, booking or practice platform), I build the automation on top of it, so you never have to switch tools." },
     { title: "Add-ons the tool never had", text: "When a platform is missing the feature you need, I build it: bots, browser extensions and small desktop apps that plug straight into it." },
     { title: "Simple enough to run alone", text: "A chat command in Discord or Telegram, or a one-click app. No technical setup, and nobody to babysit it." },
     { title: "Built to keep running", text: "Reverse-engineered APIs instead of fragile scraping, hosted and monitored, with documentation so it still makes sense months later." }
@@ -156,7 +156,7 @@ window.PORTFOLIO_DATA = {
       outcome: "Stabilized operations across approximately 100 schools in Punjab with reliable offline synchronization.",
       image: "img/projects/school-information-system.jpg",
       year: "2024",
-      links: []
+      links: [ { label: "Live demo", url: "https://punjabsis.com/" } ]
     },
     {
       slug: "raabtax-chat",
@@ -331,7 +331,7 @@ window.PORTFOLIO_DATA = {
     { num: "", title: "Automations on the tools you already use", desc: "Tell me which website or software your business runs on. I automate the repetitive clicks, exports and data entry on it." },
     { num: "", title: "Add-ons for your platforms", desc: "Missing a feature? I build bots, browser extensions and small apps that plug straight into the tools you use." },
     { num: "", title: "Discord & Telegram bots", desc: "Run your workflow from a chat command. A simple control panel for owners who don't want another dashboard." },
-    { num: "", title: "Sync between your tools", desc: "Move data between the sites and systems you use — listings, orders, contacts, bookings — automatically and without duplicates." },
+    { num: "", title: "Sync between your tools", desc: "Move data between the sites and systems you use (listings, orders, contacts, bookings) automatically and without duplicates." },
     { num: "", title: "Industry platforms I've built on", desc: "Real estate, event ticketing, healthcare practice management and e-commerce marketplaces." },
     { num: "", title: "Backends, hosting & upkeep", desc: "FastAPI and Django services, servers, deployment and monitoring, so the automation keeps running." },
     { num: "", title: "Handover & teaching", desc: "Clear documentation and Python mentoring, so you or your team can understand and change what I built." }
