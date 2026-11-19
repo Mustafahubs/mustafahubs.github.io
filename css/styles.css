@@ -1574,3 +1574,13 @@ html, a, button, [role="button"], .project-card, .service-row__header, .filter-c
 @media (orientation: landscape) and (max-height: 560px) {
   .palette-dock { left: auto; right: 0.75rem; bottom: 0.6rem; transform: scale(0.82); transform-origin: right bottom; }
 }
+
+/* case-study popup on short landscape screens */
+@media (orientation: landscape) and (max-height: 560px) {
+  .case-modal__sheet { top: 0; }
+  .case-modal__bar { padding-block: 0.45rem; }
+  .case-modal__scroll { padding-block: 0.9rem; gap: 1rem; }
+  .case-modal__hero-media { aspect-ratio: auto; height: 36svh; min-height: 0; }
+  .case-modal__title { font-size: clamp(1.4rem, 7svh, 2.1rem); }
+  .case-modal__summary { font-size: 0.95rem; }
+}
