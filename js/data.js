@@ -338,7 +338,7 @@ window.PORTFOLIO_DATA = {
   ],
   links: [
     { label: "Email", url: "mailto:ghulammustafapy@gmail.com", type: "email" },
-    { label: "Fiverr", url: "https://www.fiverr.com/mustafahubs", type: "fiverr" },
+    { label: "Fiverr", url: "https://www.fiverr.com/mustafahubs", type: "fiverr", static: true },
     { label: "GitHub", url: "https://github.com/Mustafahubs", type: "github" },
     { label: "LinkedIn", url: "https://linkedin.com/in/ghulam-mustafa-dev", type: "linkedin" },
     { label: "dev.to", url: "https://dev.to/mustafacode", type: "devto" },

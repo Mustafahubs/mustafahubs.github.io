@@ -1534,3 +1534,7 @@ body[data-tone="surface"] { background-color: var(--surface); }
   .projects-section.is-horizontal .project-card__media > div,
   .projects-section.is-horizontal .project-card__media svg { width: 100%; height: 100%; object-fit: cover; }
 }
+
+/* name-only pill (not a link) */
+.contact-pill--static { cursor: default; }
+.contact-pill--static:hover { background: var(--bg); color: var(--text); border-color: var(--border-strong); }

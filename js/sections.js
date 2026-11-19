@@ -390,7 +390,9 @@
     const container = document.getElementById('contactLinks');
     if (!container) return;
     const links = getLinks().filter(l => l.type !== 'email');
-    container.innerHTML = links.map(l => `
+    container.innerHTML = links.map(l => l.static
+      ? `<span class="contact-pill contact-pill--static">${esc(l.label)}</span>`
+      : `
       <a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" class="contact-pill magnetic" data-cursor="LINK">
         <span>${esc(l.label)}</span>
         <span aria-hidden="true">&nearr;</span>
