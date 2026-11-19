@@ -1538,3 +1538,14 @@ body[data-tone="surface"] { background-color: var(--surface); }
 /* name-only pill (not a link) */
 .contact-pill--static { cursor: default; }
 .contact-pill--static:hover { background: var(--bg); color: var(--text); border-color: var(--border-strong); }
+
+/* ===== PART 8 - mobile polish found on a real phone ===== */
+/* no blue tap flash on Android */
+html, a, button, [role="button"], .project-card, .service-row__header, .filter-chip, .contact-pill, .palette-dock button { -webkit-tap-highlight-color: transparent; }
+/* project stack: each card stays fully readable before the next one slides over it */
+@media (max-width: 959px) {
+  .projects-section:not(.is-horizontal) .projects-track { gap: 0; }
+  .projects-section:not(.is-horizontal) .project-card { margin-bottom: 32svh; }
+  .projects-section:not(.is-horizontal) .project-card:last-child { margin-bottom: 0; }
+  .projects-section:not(.is-horizontal) .project-card__media { aspect-ratio: 16 / 10; max-height: 34svh; }
+}
